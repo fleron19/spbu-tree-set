@@ -1,8 +1,18 @@
 #pragma once
 #include <stdbool.h>
 
-typedef struct BST BST;
+struct Node {
+    int value;
+    struct Node* leftChild;
+    struct Node* rightChild;
+};
+
+struct BST {
+    struct Node* root;
+};
+
 typedef struct Node Node;
+typedef struct BST BST;
 
 void bstInsert(BST* tree, int value);
 BST* newBst(void);

@@ -1,16 +1,6 @@
 #include "binary_searh_tree.h"
 #include <stdlib.h>
 
-struct BST {
-    struct Node* root;
-};
-
-struct Node {
-    int value;
-    struct Node* leftChild;
-    struct Node* rightChild;
-};
-
 BST* newBst() {
     BST* bst = (BST*)malloc(sizeof(*bst));
     return bst;
@@ -33,6 +23,7 @@ void bstInsert(BST* tree, int value) {
             else {
                 Node* node = (Node*)malloc(sizeof(*node));
                 node->value = value;
+                curr->rightChild = node;
                 break;
             }
         }
@@ -44,6 +35,7 @@ void bstInsert(BST* tree, int value) {
             else {
                 Node* node = (Node*)malloc(sizeof(*node));
                 node->value = value;
+                curr->leftChild = node;
                 break;
             }
         }
