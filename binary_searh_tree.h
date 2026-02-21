@@ -17,4 +17,5 @@ typedef struct BST BST;
 void bstInsert(BST* tree, int value);
 BST* newBst(void);
 bool bstContains(BST* tree, int value);
+void freeNode(Node* node);
 void bstFree(BST* tree);
