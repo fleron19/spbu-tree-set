@@ -1,4 +1,5 @@
 #include "binary_searh_tree.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 BST* newBst()
@@ -73,7 +74,7 @@ bool bstContains(BST* tree, int value)
     }
 }
 
-void freeNode(Node* node)
+static void freeNode(Node* node)
 {
     if (node == NULL) {
         return;
@@ -94,4 +95,61 @@ void bstFree(BST* tree)
 
     freeNode(tree->root);
     free(tree);
+}
+
+static void bstInorderNode(Node* node)
+{
+    if (node != NULL) {
+        bstInorderNode(node->leftChild);
+        printf("%d ", node->value);
+        bstInorderNode(node->rightChild);
+    }
+}
+
+void bstInorder(BST* tree)
+{
+    if (tree->root != NULL) {
+        bstInorderNode(tree->root);
+    } else {
+        printf("Tree is empty");
+    }
+    printf("\n");
+}
+
+static void bstPreorderNode(Node* node)
+{
+    if (node != NULL) {
+        printf("%d ", node->value);
+        bstPreorderNode(node->leftChild);
+        bstPreorderNode(node->rightChild);
+    }
+}
+
+void bstPreorder(BST* tree)
+{
+    if (tree->root != NULL) {
+        bstPreorderNode(tree->root);
+    } else {
+        printf("Tree is empty");
+    }
+    printf("\n");
+}
+
+static void bstPostorderNode(Node* node)
+{
+    if (node != NULL) {
+        bstPostorderNode(node->leftChild);
+        bstPostorderNode(node->rightChild);
+        printf("%d ", node->value);
+    }
+}
+
+void bstPostorder(BST* tree)
+{
+    if (tree->root != NULL) {
+        bstPostorderNode(tree->root);
+    } else {
+        printf("Tree is empty");
+    }
+    printf("\n");
 }

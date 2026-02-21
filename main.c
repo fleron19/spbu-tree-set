@@ -101,6 +101,23 @@ int main(int argc, char** argv)
         }
         return 0;
     }
+    BST* bst = newBst();
+    bstInorder(bst);
+    bstPreorder(bst);
+    bstPostorder(bst); // all 3 = empty
 
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
+    bstInsert(bst, 3);
+    bstInsert(bst, 7);
+    bstInsert(bst, 6);
+    bstInsert(bst, 9);
+    bstInsert(bst, 11);
+    bstInsert(bst, 15);
+    bstInsert(bst, 14);
+
+    bstInorder(bst); // 3 5 6 7 9 10 11 14 15
+    bstPreorder(bst); // 10 5 3 7 6 9 11 15 14
+    bstPostorder(bst); // 3 6 9 7 5 14 15 11 10
     return 0;
 }

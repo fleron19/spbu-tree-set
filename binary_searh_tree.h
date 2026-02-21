@@ -17,5 +17,11 @@ typedef struct BST BST;
 void bstInsert(BST* tree, int value);
 BST* newBst(void);
 bool bstContains(BST* tree, int value);
-void freeNode(Node* node);
+static void freeNode(Node* node);
 void bstFree(BST* tree);
+static void bstInorderNode(Node* node);
+void bstInorder(BST* tree); // LNR
+static void bstPreorderNode(Node* node);
+void bstPreorder(BST* tree); // NLR
+static void bstPostorderNode(Node* node);
+void bstPostorder(BST* tree); // LRN
