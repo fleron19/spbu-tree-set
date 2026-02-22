@@ -1,4 +1,4 @@
-#include "binary_searh_tree.h"
+#include "binary_search_tree.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -102,10 +102,22 @@ int main(int argc, char** argv)
         return 0;
     }
     BST* bst = newBst();
-    bstInorder(bst);
-    bstPreorder(bst);
-    bstPostorder(bst); // all 3 = empty
+    printf("Empty tree tests: \n");
+    printf("LNR = ");
+    bstInorder(bst); 
+    printf("NLR = ");
+    bstPreorder(bst); 
+    printf("LRN = ");
+    bstPostorder(bst); // all 3 - empty
 
+    printf("Tree size = %d\n", bstSize(bst));
+    printf("Tree height = %d\n", bstHeight(bst));
+    printf("Max Value = %d\n", bstMax(bst));
+    printf("Min Value = %d\n", bstMin(bst));
+
+    printf("----------------------------- \n");
+
+    printf("Not empty tree tests: \n");
     bstInsert(bst, 10);
     bstInsert(bst, 5);
     bstInsert(bst, 3);
@@ -116,8 +128,16 @@ int main(int argc, char** argv)
     bstInsert(bst, 15);
     bstInsert(bst, 14);
 
+    printf("LNR = ");
     bstInorder(bst); // 3 5 6 7 9 10 11 14 15
+    printf("NLR = ");
     bstPreorder(bst); // 10 5 3 7 6 9 11 15 14
+    printf("LRN = ");
     bstPostorder(bst); // 3 6 9 7 5 14 15 11 10
+
+    printf("Tree size = %d\n", bstSize(bst));
+    printf("Tree height = %d\n", bstHeight(bst));
+    printf("Max Value = %d\n", bstMax(bst));
+    printf("Min Value = %d\n", bstMin(bst));
     return 0;
 }

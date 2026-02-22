@@ -1,16 +1,20 @@
-#include "binary_searh_tree.h"
+#include "binary_search_tree.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
 BST* newBst()
 {
     BST* bst = (BST*)malloc(sizeof(*bst));
     bst->root = NULL;
+    bst->size = 0;
     return bst;
 }
 
 void bstInsert(BST* tree, int value)
 {
+    tree->size++;
     if (tree->root == NULL) {
         Node* node = (Node*)malloc(sizeof(*node));
         node->value = value;
@@ -51,7 +55,7 @@ void bstInsert(BST* tree, int value)
 
 bool bstContains(BST* tree, int value)
 {
-    if (tree->root == NULL) {
+    if (tree->size != 0) {
         return false;
     } else {
         Node* curr = tree->root;
@@ -88,7 +92,7 @@ static void freeNode(Node* node)
 
 void bstFree(BST* tree)
 {
-    if (tree->root == NULL) {
+    if (tree->size != 0) {
         free(tree);
         return;
     }
@@ -108,7 +112,7 @@ static void bstInorderNode(Node* node)
 
 void bstInorder(BST* tree)
 {
-    if (tree->root != NULL) {
+    if (tree->size != 0) {
         bstInorderNode(tree->root);
     } else {
         printf("Tree is empty");
@@ -127,7 +131,7 @@ static void bstPreorderNode(Node* node)
 
 void bstPreorder(BST* tree)
 {
-    if (tree->root != NULL) {
+    if (tree->size != 0) {
         bstPreorderNode(tree->root);
     } else {
         printf("Tree is empty");
@@ -146,10 +150,58 @@ static void bstPostorderNode(Node* node)
 
 void bstPostorder(BST* tree)
 {
-    if (tree->root != NULL) {
+    if (tree->size != 0) {
         bstPostorderNode(tree->root);
     } else {
         printf("Tree is empty");
     }
     printf("\n");
+}
+
+int bstSize(BST* tree)
+{
+    return tree->size;
+}
+
+static int nodeHeight(Node* node)
+{
+
+    if (node == NULL) {
+        return 0;
+    }
+
+    return MAX(nodeHeight(node->rightChild), nodeHeight(node->leftChild)) + 1;
+}
+
+int bstHeight(BST* tree)
+{
+    if (tree->size == 0) {
+        return 0;
+    }
+    return nodeHeight(tree->root) - 1;
+}
+
+int bstMin(BST* tree) {
+    if (tree->size == 0) {
+        return -1;
+    }
+    Node* curr = tree->root;
+    int prevMin = curr->value;
+    while (curr) {
+        prevMin = curr->value;
+        curr = curr->leftChild;
+    }
+    return prevMin;
+}
+int bstMax(BST* tree) {
+    if (tree->size == 0) {
+        return -1;
+    }
+    Node* curr = tree->root;
+    int prevMax = curr->value;
+    while (curr) {
+        prevMax = curr->value;
+        curr = curr->rightChild;
+    }
+    return prevMax;
 }
