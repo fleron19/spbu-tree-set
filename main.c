@@ -12,18 +12,22 @@ bool testbstInsert_1()
     bstInsert(bst, 1);
     bstInsert(bst, 6);
     if (bst->root->value != 5) {
+        bstFree(bst);
         return false;
     }
     if (bst->root->leftChild->value != 1) {
+        bstFree(bst);
         return false;
     }
     if (bst->root->rightChild->value != 6) {
+        bstFree(bst);
         return false;
     }
 
     Node* rc = bst->root->rightChild;
     Node* lc = bst->root->rightChild;
     if (rc->leftChild || rc->rightChild || lc->leftChild || lc->rightChild) {
+        bstFree(bst);
         return false;
     }
 
@@ -39,15 +43,19 @@ bool testbstInsert_2()
     bstInsert(bst, 3);
     bstInsert(bst, 7);
     if (bst->root->value != 1) {
+        bstFree(bst);
         return false;
     }
     if (bst->root->rightChild->value != 3) {
+        bstFree(bst);
         return false;
     }
     if (bst->root->rightChild->rightChild->value != 7) {
+        bstFree(bst);
         return false;
     }
     if (bst->root->leftChild) {
+        bstFree(bst);
         return false;
     }
     bstFree(bst);
@@ -139,5 +147,6 @@ int main(int argc, char** argv)
     printf("Tree height = %d\n", bstHeight(bst));
     printf("Max Value = %d\n", bstMax(bst));
     printf("Min Value = %d\n", bstMin(bst));
+    bstFree(bst);
     return 0;
 }

@@ -55,7 +55,7 @@ void bstInsert(BST* tree, int value)
 
 bool bstContains(BST* tree, int value)
 {
-    if (tree->size != 0) {
+    if (tree->size == 0) {
         return false;
     } else {
         Node* curr = tree->root;
@@ -92,7 +92,7 @@ static void freeNode(Node* node)
 
 void bstFree(BST* tree)
 {
-    if (tree->size != 0) {
+    if (tree->size == 0) {
         free(tree);
         return;
     }
