@@ -112,9 +112,9 @@ int main(int argc, char** argv)
     BST* bst = newBst();
     printf("Empty tree tests: \n");
     printf("LNR = ");
-    bstInorder(bst); 
+    bstInorder(bst);
     printf("NLR = ");
-    bstPreorder(bst); 
+    bstPreorder(bst);
     printf("LRN = ");
     bstPostorder(bst); // all 3 - empty
 
