@@ -31,5 +31,5 @@ void bstPostorder(BST* tree); // LRN
 static int nodeHeight(Node* node);
 int bstHeight(BST* tree);
 int bstSize(BST* tree);
-int bstMin(BST* tree); //min for empty = -1
-int bstMax(BST* tree); //max for empty = -1
+int bstMin(BST* tree); // min for empty = -1
+int bstMax(BST* tree); // max for empty = -1

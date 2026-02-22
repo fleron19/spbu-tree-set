@@ -181,7 +181,8 @@ int bstHeight(BST* tree)
     return nodeHeight(tree->root) - 1;
 }
 
-int bstMin(BST* tree) {
+int bstMin(BST* tree)
+{
     if (tree->size == 0) {
         return -1;
     }
@@ -193,7 +194,8 @@ int bstMin(BST* tree) {
     }
     return prevMin;
 }
-int bstMax(BST* tree) {
+int bstMax(BST* tree)
+{
     if (tree->size == 0) {
         return -1;
     }
