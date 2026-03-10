@@ -7,6 +7,10 @@
 BST* newBst()
 {
     BST* bst = (BST*)malloc(sizeof(*bst));
+    if (bst == NULL) {
+        printf("Allocation error\n");
+        return NULL;
+    }
     bst->root = NULL;
     bst->size = 0;
     return bst;
@@ -41,6 +45,10 @@ void bstInsert(BST* tree, int value)
                 curr = curr->leftChild;
             } else {
                 Node* node = (Node*)malloc(sizeof(*node));
+                if (node == NULL) {
+                    printf("Allocation error\n");
+                    return;
+                }
                 node->value = value;
                 curr->leftChild = node;
                 node->leftChild = NULL;
@@ -64,12 +72,12 @@ bool bstContains(BST* tree, int value)
                 return true;
             }
             if (value > curr->value) {
-                if (!curr->rightChild) {
+                if (curr->rightChild == false) {
                     return false;
                 }
                 curr = curr->rightChild;
             } else {
-                if (!curr->leftChild) {
+                if (curr->leftChild == false) {
                     return false;
                 }
                 curr = curr->leftChild;
@@ -92,11 +100,6 @@ static void freeNode(Node* node)
 
 void bstFree(BST* tree)
 {
-    if (tree->size == 0) {
-        free(tree);
-        return;
-    }
-
     freeNode(tree->root);
     free(tree);
 }
@@ -181,10 +184,10 @@ int bstHeight(BST* tree)
     return nodeHeight(tree->root) - 1;
 }
 
-int bstMin(BST* tree)
+bool bstMin(BST* tree, int* val)
 {
     if (tree->size == 0) {
-        return -1;
+        return false;
     }
     Node* curr = tree->root;
     int prevMin = curr->value;
@@ -192,12 +195,13 @@ int bstMin(BST* tree)
         prevMin = curr->value;
         curr = curr->leftChild;
     }
-    return prevMin;
+    *val = prevMin;
+    return true;
 }
-int bstMax(BST* tree)
+bool bstMax(BST* tree, int* val)
 {
     if (tree->size == 0) {
-        return -1;
+        return false;
     }
     Node* curr = tree->root;
     int prevMax = curr->value;
@@ -205,5 +209,6 @@ int bstMax(BST* tree)
         prevMax = curr->value;
         curr = curr->rightChild;
     }
-    return prevMax;
+    *val = prevMax;
+    return true;
 }
