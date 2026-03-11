@@ -18,9 +18,13 @@ BST* newBst()
 
 void bstInsert(BST* tree, int value)
 {
-    tree->size++;
     if (tree->root == NULL) {
         Node* node = (Node*)malloc(sizeof(*node));
+        if (node == NULL) {
+            printf("Allocation error\n");
+            return;
+        }
+        tree->size++;
         node->value = value;
         node->leftChild = NULL;
         node->rightChild = NULL;
@@ -34,6 +38,11 @@ void bstInsert(BST* tree, int value)
                 curr = curr->rightChild;
             } else {
                 Node* node = (Node*)malloc(sizeof(*node));
+                if (node == NULL) {
+                    printf("Allocation error\n");
+                    return;
+                }
+                tree->size++;
                 node->value = value;
                 curr->rightChild = node;
                 node->leftChild = NULL;
@@ -49,6 +58,7 @@ void bstInsert(BST* tree, int value)
                     printf("Allocation error\n");
                     return;
                 }
+                tree->size++;
                 node->value = value;
                 curr->leftChild = node;
                 node->leftChild = NULL;
