@@ -5,7 +5,7 @@
 #define GREEN(string) "\x1b[32m" string "\x1b[0m"
 #define RED(string) "\x1b[31m" string "\x1b[0m"
 
-bool testbstInsert_1()
+bool testbstInsert1(void)
 {
     BST* bst = newBst();
     bstInsert(bst, 5);
@@ -35,7 +35,7 @@ bool testbstInsert_1()
     return true;
 }
 
-bool testbstInsert_2()
+bool testbstInsert2(void)
 {
     BST* bst = newBst();
     bstInsert(bst, 1);
@@ -62,7 +62,7 @@ bool testbstInsert_2()
     return true;
 }
 
-bool testbstContains_1()
+bool testbstContains1(void)
 {
     BST* bst = newBst();
     bstInsert(bst, 5);
@@ -74,7 +74,7 @@ bool testbstContains_1()
     return res;
 }
 
-bool testbstContains_2()
+bool testbstContains2(void)
 {
     BST* bst = newBst();
     bstInsert(bst, 5);
@@ -97,8 +97,8 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
-        bool (*tests[4])() = { &testbstInsert_1, &testbstInsert_2,
-            &testbstContains_1, &testbstContains_2 };
+        bool (*tests[4])() = { &testbstInsert1, &testbstInsert2,
+            &testbstContains1, &testbstContains2 };
         for (int testNum = 0; testNum < 4; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
@@ -120,12 +120,12 @@ int main(int argc, char** argv)
 
     printf("Tree size = %d\n", bstSize(bst));
     printf("Tree height = %d\n", bstHeight(bst));
-    int max_val = 0;
-    int min_val = 0;
-    bstMax(bst, &max_val);
-    bstMin(bst, &max_val);
-    printf("Max Value = %d\n", max_val);
-    printf("Min Value = %d\n", min_val);
+    int maxval = 0;
+    int minval = 0;
+    bstMax(bst, &maxval);
+    bstMin(bst, &maxval);
+    printf("Max Value = %d\n", maxval);
+    printf("Min Value = %d\n", minval);
 
     printf("----------------------------- \n");
 
@@ -149,12 +149,12 @@ int main(int argc, char** argv)
 
     printf("Tree size = %d\n", bstSize(bst));
     printf("Tree height = %d\n", bstHeight(bst));
-    max_val = 0;
-    min_val = 0;
-    bstMax(bst, &max_val);
-    bstMin(bst, &min_val);
-    printf("Max Value = %d\n", max_val);
-    printf("Min Value = %d\n", min_val);
+    maxval = 0;
+    minval = 0;
+    bstMax(bst, &maxval);
+    bstMin(bst, &minval);
+    printf("Max Value = %d\n", maxval);
+    printf("Min Value = %d\n", minval);
     bstFree(bst);
     return 0;
 }
