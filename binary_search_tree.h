@@ -33,3 +33,6 @@ int bstHeight(BST* tree);
 int bstSize(BST* tree);
 bool bstMin(BST* tree, int* val); // retrun true if tree is not empty, false otherwise
 bool bstMax(BST* tree, int* val); // retrun true if tree is not empty, false otherwise
+
+// static void bstMergeRec(BST* into, Node* curr1, Node* curr2);
+BST* bstMerge(BST* tree1, BST* tree2);

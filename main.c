@@ -86,6 +86,34 @@ bool testbstContains2(void)
     return res;
 }
 
+bool testbstMerge1(void)
+{
+    BST* bst1 = newBst();
+    BST* bst2 = newBst();
+    BST* bstMerged = bstMerge(bst1, bst2);
+    bool res = !bstContains(bstMerged, 12);
+    bstFree(bst1);
+    bstFree(bst2);
+    bstFree(bstMerged);
+    return res;
+}
+
+bool testbstMerge2(void)
+{
+    BST* bst1 = newBst();
+    BST* bst2 = newBst();
+    bstInsert(bst1, 373);
+    bstInsert(bst1, 1337);
+    bstInsert(bst2, 42);
+    bstInsert(bst1, 24);
+    BST* bstMerged = bstMerge(bst1, bst2);
+    bool res = bstContains(bstMerged, 1337) && bstContains(bstMerged, 42) && bstContains(bstMerged, 373) && bstContains(bstMerged, 24);
+    bstFree(bst1);
+    bstFree(bst2);
+    bstFree(bstMerged);
+    return res;
+}
+
 int main(int argc, char** argv)
 {
     bool testMode = false;
@@ -97,9 +125,9 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
-        bool (*tests[4])(void) = { &testbstInsert1, &testbstInsert2,
-            &testbstContains1, &testbstContains2 };
-        for (int testNum = 0; testNum < 4; ++testNum) {
+        bool (*tests[6])(void) = { &testbstInsert1, &testbstInsert2,
+            &testbstContains1, &testbstContains2, &testbstMerge1, &testbstMerge2 };
+        for (int testNum = 0; testNum < 6; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
             } else {
@@ -155,6 +183,21 @@ int main(int argc, char** argv)
     bstMin(bst, &minval);
     printf("Max Value = %d\n", maxval);
     printf("Min Value = %d\n", minval);
+
+    printf("----------------------------- \n");
+
+    BST* bst2 = newBst();
+    bstInsert(bst2, 2);
+    bstInsert(bst2, 1);
+    bstInsert(bst2, 5);
+    bstInsert(bst2, 42);
+    printf("Merging bst with 1 2 5 42 tree\n");
+    BST* bstMerged = bstMerge(bst2, bst);
+    printf("Merged bst NLR = ");
+    bstPreorder(bstMerged);
+
     bstFree(bst);
+    bstFree(bst2);
+    bstFree(bstMerged);
     return 0;
 }
