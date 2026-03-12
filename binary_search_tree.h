@@ -18,17 +18,17 @@ typedef struct BST BST;
 void bstInsert(BST* tree, int value);
 BST* newBst(void);
 bool bstContains(BST* tree, int value);
-//static void freeNode(Node* node);
+// static void freeNode(Node* node);
 void bstFree(BST* tree);
 
-//static void bstInorderNode(Node* node);
+// static void bstInorderNode(Node* node);
 void bstInorder(BST* tree); // LNR
-//static void bstPreorderNode(Node* node);
+// static void bstPreorderNode(Node* node);
 void bstPreorder(BST* tree); // NLR
-//static void bstPostorderNode(Node* node);
+// static void bstPostorderNode(Node* node);
 void bstPostorder(BST* tree); // LRN
 
-//static int nodeHeight(Node* node);
+// static int nodeHeight(Node* node);
 int bstHeight(BST* tree);
 int bstSize(BST* tree);
 bool bstMin(BST* tree, int* val); // retrun true if tree is not empty, false otherwise
