@@ -4,7 +4,7 @@
 
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
-BST* newBst()
+BST* newBst(void)
 {
     BST* bst = (BST*)malloc(sizeof(*bst));
     if (bst == NULL) {

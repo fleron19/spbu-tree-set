@@ -97,7 +97,7 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
-        bool (*tests[4])() = { &testbstInsert1, &testbstInsert2,
+        bool (*tests[4])(void) = { &testbstInsert1, &testbstInsert2,
             &testbstContains1, &testbstContains2 };
         for (int testNum = 0; testNum < 4; ++testNum) {
             if (tests[testNum]()) {
