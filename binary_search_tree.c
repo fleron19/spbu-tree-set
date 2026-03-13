@@ -222,3 +222,58 @@ bool bstMax(BST* tree, int* val)
     *val = prevMax;
     return true;
 }
+
+static void bstInorderNode(Node* node)
+{
+    if (node != NULL) {
+        bstInorderNode(node->leftChild);
+        printf("%d ", node->value);
+        bstInorderNode(node->rightChild);
+    }
+}
+
+bool findKth(Node* node, int* k, int* val)
+{
+    if (node == NULL) {
+        return false;
+    }
+
+    //when K-th element is found, the recursion will unwind
+    if (findKth(node->leftChild, k, val)) {
+        return true;
+    }
+
+    (*k)--;
+    if (*k == 0) {
+        *val = node->val;
+        return true;
+    }
+
+    return findKth(node->rightChild, k, val);
+}
+
+bool bstMinKth(BST* tree, int* val, int k)
+{
+    bool isValid = true;
+
+    if (k <= 0) {
+        printf("Index must be positive!");
+        isValid = false;
+    }
+    if (tree == NULL) {
+        printf("Tree is not found!");
+        return false;
+    }
+    if (tree->size < k) {
+        printf("Size of tree < index!");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return false;
+    }
+    
+    int counter = k;
+
+    return findKth(tree->root, &counter, val);
+}

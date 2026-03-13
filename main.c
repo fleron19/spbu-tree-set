@@ -86,6 +86,30 @@ bool testbstContains2(void)
     return res;
 }
 
+bool testbstMinKth1(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 5);
+    bstInsert(bst, 1);
+    bstInsert(bst, 6);
+    bstInsert(bst, 8);
+    bool res = bstMinKth(3);
+    bstFree(bst);
+    return res;
+}
+
+bool testbstMinKth2(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 5);
+    bstInsert(bst, 1);
+    bstInsert(bst, 6);
+    bstInsert(bst, 8);
+    bool res = bstMinKth(-1);
+    bstFree(bst);
+    return res;
+}
+
 int main(int argc, char** argv)
 {
     bool testMode = false;
@@ -97,9 +121,9 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
-        bool (*tests[4])(void) = { &testbstInsert1, &testbstInsert2,
-            &testbstContains1, &testbstContains2 };
-        for (int testNum = 0; testNum < 4; ++testNum) {
+        bool (*tests[6])(void) = { &testbstInsert1, &testbstInsert2,
+            &testbstContains1, &testbstContains2, &testbstMinKth1, &testbstMinKth2 };
+        for (int testNum = 0; testNum < 6; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
             } else {
