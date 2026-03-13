@@ -243,29 +243,30 @@ static bool findKth(Node* node, int* k, int* val)
     return findKth(node->rightChild, k, val);
 }
 
+// I think bool is better, but task is task
 int bstMinKth(BST* tree, int* val, int k)
 {
-    bool isValid = true;
+    int isValid = 1;
 
     if (k <= 0) {
         printf("Index must be positive!");
-        isValid = false;
+        isValid = 0;
     }
     if (tree == NULL) {
         printf("Tree is not found!");
-        return false;
+        return 0;
     }
     if (tree->size < k) {
         printf("Size of tree < index!");
-        isValid = false;
+        isValid = 0;
     }
 
     if (!isValid) {
-        return false;
+        return 0;
     }
     
     int counter = k;
     findKth(tree->root, &counter, val);
 
-    return *val;
+    return 1;
 }
