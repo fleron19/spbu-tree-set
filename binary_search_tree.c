@@ -236,7 +236,7 @@ bool findKth(Node* node, int* k, int* val)
 
     (*k)--;
     if (*k == 0) {
-        *val = node->val;
+        *val = node->value;
         return true;
     }
 
