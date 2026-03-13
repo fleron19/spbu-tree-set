@@ -243,7 +243,7 @@ bool findKth(Node* node, int* k, int* val)
     return findKth(node->rightChild, k, val);
 }
 
-bool bstMinKth(BST* tree, int* val, int k)
+bool bstMinKth(BST* tree, int k)
 {
     bool isValid = true;
 
