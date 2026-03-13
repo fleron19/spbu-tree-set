@@ -223,7 +223,7 @@ bool bstMax(BST* tree, int* val)
     return true;
 }
 
-bool findKth(Node* node, int* k, int* val)
+static bool findKth(Node* node, int* k, int* val)
 {
     if (node == NULL) {
         return false;
@@ -266,6 +266,6 @@ int bstMinKth(BST* tree, int* val, int k)
     
     int counter = k;
     findKth(tree->root, &counter, val);
-    
+
     return *val;
 }

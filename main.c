@@ -93,7 +93,7 @@ bool testbstMinKth1(void)
     bstInsert(bst, 1);
     bstInsert(bst, 6);
     bstInsert(bst, 8);
-    bool res = bstMinKth(bst, 3);
+    bool res = findKth(bst, &crutch, 3);
     bstFree(bst);
     return res;
 }
@@ -101,11 +101,12 @@ bool testbstMinKth1(void)
 bool testbstMinKth2(void)
 {
     BST* bst = newBst();
+    int crutch = 0;
     bstInsert(bst, 5);
     bstInsert(bst, 1);
     bstInsert(bst, 6);
     bstInsert(bst, 8);
-    bool res = bstMinKth(bst, -1);
+    bool res = !findKth(bst, &crutch, -1);
     bstFree(bst);
     return res;
 }
