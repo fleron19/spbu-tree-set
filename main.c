@@ -144,12 +144,12 @@ int main(int argc, char** argv)
 
     printf("Tree size = %d\n", bstSize(bst));
     printf("Tree height = %d\n", bstHeight(bst));
-    int maxval = 0;
-    int minval = 0;
-    bstMax(bst, &maxval);
-    bstMin(bst, &maxval);
-    printf("Max Value = %d\n", maxval);
-    printf("Min Value = %d\n", minval);
+    int maxVal = 0;
+    int minVal = 0;
+    bstMax(bst, &maxVal);
+    bstMin(bst, &maxVal);
+    printf("Max Value = %d\n", maxVal);
+    printf("Min Value = %d\n", minVal);
 
     printf("----------------------------- \n");
 
