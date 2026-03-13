@@ -179,6 +179,14 @@ int main(int argc, char** argv)
     bstMin(bst, &minVal);
     printf("Max Value = %d\n", maxVal);
     printf("Min Value = %d\n", minVal);
+
+    minVal1 = 0; // 3
+    minVal5 = 0; // 9
+    bstMinKth(bst, &minVal1, 1);
+    bstMinKth(bst, &minVal5, 5);
+    printf("Min №1 Value = %d\n", minVal1);
+    printf("Min №5 Value = %d\n", minVal5);
+
     bstFree(bst);
     return 0;
 }
