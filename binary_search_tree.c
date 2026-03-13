@@ -223,15 +223,6 @@ bool bstMax(BST* tree, int* val)
     return true;
 }
 
-static void bstInorderNode(Node* node)
-{
-    if (node != NULL) {
-        bstInorderNode(node->leftChild);
-        printf("%d ", node->value);
-        bstInorderNode(node->rightChild);
-    }
-}
-
 bool findKth(Node* node, int* k, int* val)
 {
     if (node == NULL) {
