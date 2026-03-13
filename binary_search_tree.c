@@ -229,7 +229,7 @@ static bool findKth(Node* node, int* k, int* val)
         return false;
     }
 
-    //when K-th element is found, the recursion will unwind
+    // when K-th element is found, the recursion will unwind
     if (findKth(node->leftChild, k, val)) {
         return true;
     }
@@ -249,18 +249,17 @@ int bstMinKth(BST* tree, int* val, int k)
     int isValid = 1;
 
     if (k <= 0) {
-        printf("Index must be positive!");
+        printf("Index must be positive!\n");
         isValid = 0;
     }
     if (tree == NULL) {
-        printf("Tree is not found!");
+        printf("Tree is not found!\n");
         return 0;
     }
     if (tree->size < k) {
-        printf("Size of tree < index!");
+        printf("Size of tree < index!\n");
         isValid = 0;
     }
-
     if (!isValid) {
         return 0;
     }
