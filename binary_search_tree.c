@@ -263,7 +263,6 @@ int bstMinKth(BST* tree, int* val, int k)
     if (!isValid) {
         return 0;
     }
-    
     int counter = k;
     findKth(tree->root, &counter, val);
 
