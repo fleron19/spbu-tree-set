@@ -36,3 +36,5 @@ bool bstMax(BST* tree, int* val); // retrun true if tree is not empty, false oth
 
 // min element №k (G)s
 bool bstMinKth(BST* tree, int* val, int k); // retrun true if the value exists, false otherwise
+// static void bstMergeRec(BST* into, Node* curr1, Node* curr2);
+BST* bstMerge(BST* tree1, BST* tree2);
