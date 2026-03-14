@@ -243,7 +243,6 @@ static bool findKth(Node* node, int* val, int* k)
     return findKth(node->rightChild, val, k);
 }
 
-// I think bool is better, but task is task
 bool bstMinKth(BST* tree, int* val, int k)
 {
     bool isValid = true;
@@ -264,7 +263,7 @@ bool bstMinKth(BST* tree, int* val, int k)
         return false;
     }
     int counter = k;
-    findKth(tree->root, &counter, val);
+    findKth(tree->root, val, &counter);
 
     return true;
 }
