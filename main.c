@@ -94,7 +94,7 @@ bool testbstMinKth1(void)
     bstInsert(bst, 1);
     bstInsert(bst, 6);
     bstInsert(bst, 8);
-    int res = (bstMinKth(bst, &crutch, 3) && crutch == 6);
+    bool res = (bstMinKth(bst, 3, &crutch) && crutch == 6);
     bstFree(bst);
     return res;
 }
@@ -107,7 +107,7 @@ bool testbstMinKth2(void)
     bstInsert(bst, 1);
     bstInsert(bst, 6);
     bstInsert(bst, 8);
-    int res = !bstMinKth(bst, &crutch, -1);
+    bool res = !bstMinKth(bst, -1, &crutch);
     bstFree(bst);
     return res;
 }
@@ -184,8 +184,8 @@ int main(int argc, char** argv)
 
     int minVal1 = 0; // 3
     int minVal5 = 0; // 9
-    bstMinKth(bst, &minVal1, 1);
-    bstMinKth(bst, &minVal5, 5);
+    bstMinKth(bst, 1, &minVal1);
+    bstMinKth(bst, 5, &minVal5);
     printf("Min №1 Value = %d\n", minVal1);
     printf("Min №5 Value = %d\n", minVal5);
 
