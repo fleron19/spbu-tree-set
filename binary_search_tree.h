@@ -35,4 +35,4 @@ bool bstMin(BST* tree, int* val); // retrun true if tree is not empty, false oth
 bool bstMax(BST* tree, int* val); // retrun true if tree is not empty, false otherwise
 
 // min element №k (G)s
-int bstMinKth(BST* tree, int* val, int k); // retrun 1 if the value exists, -1 otherwise
+bool bstMinKth(BST* tree, int* val, int k); // retrun true if the value exists, false otherwise

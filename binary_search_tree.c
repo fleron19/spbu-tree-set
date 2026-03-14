@@ -223,14 +223,14 @@ bool bstMax(BST* tree, int* val)
     return true;
 }
 
-static bool findKth(Node* node, int* k, int* val)
+static bool findKth(Node* node, int* val, int* k)
 {
     if (node == NULL) {
         return false;
     }
 
     // when K-th element is found, the recursion will unwind
-    if (findKth(node->leftChild, k, val)) {
+    if (findKth(node->leftChild, val, k)) {
         return true;
     }
 
@@ -240,31 +240,31 @@ static bool findKth(Node* node, int* k, int* val)
         return true;
     }
 
-    return findKth(node->rightChild, k, val);
+    return findKth(node->rightChild, val, k);
 }
 
 // I think bool is better, but task is task
-int bstMinKth(BST* tree, int* val, int k)
+bool bstMinKth(BST* tree, int* val, int k)
 {
-    int isValid = 1;
+    bool isValid = true;
 
     if (k <= 0) {
         printf("Index must be positive!\n");
-        isValid = 0;
+        isValid = false;
     }
     if (tree == NULL) {
         printf("Tree is not found!\n");
-        return 0;
+        return false;
     }
     if (tree->size < k) {
         printf("Size of tree < index!\n");
-        isValid = 0;
+        isValid = false;
     }
     if (!isValid) {
-        return 0;
+        return false;
     }
     int counter = k;
     findKth(tree->root, &counter, val);
 
-    return 1;
+    return true;
 }
