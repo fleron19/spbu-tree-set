@@ -222,3 +222,24 @@ bool bstMax(BST* tree, int* val)
     *val = prevMax;
     return true;
 }
+
+static void bstMergeRec(BST* into, Node* curr1, Node* curr2)
+{
+    if (curr1 != NULL) {
+        bstInsert(into, curr1->value);
+        bstMergeRec(into, curr1->leftChild, curr1->rightChild);
+    }
+    if (curr2 != NULL) {
+        bstInsert(into, curr2->value);
+        bstMergeRec(into, curr2->leftChild, curr2->rightChild);
+    }
+}
+
+BST* bstMerge(BST* tree1, BST* tree2)
+{
+    BST* res = newBst();
+    Node* curr1 = tree1->root;
+    Node* curr2 = tree2->root;
+    bstMergeRec(res, curr1, curr2);
+    return res;
+}
