@@ -121,7 +121,7 @@ bool testbstMerge3(void)
     bstInsert(bst1, 373);
     bstInsert(bst1, 1337);
     BST* bstMerged = bstMerge(bst1, bst2);
-    //check bst1 and bst2 did not change
+    // check bst1 and bst2 did not change
     bool res = (bst1->size == 2) && (bst2->size == 0) && bstContains(bst1, 373) && bstContains(bst1, 1337);
     bstFree(bst1);
     bstFree(bst2);
@@ -141,7 +141,7 @@ int main(int argc, char** argv)
 
     if (testMode) {
         bool (*tests[7])(void) = { &testbstInsert1, &testbstInsert2,
-            &testbstContains1, &testbstContains2, &testbstMerge1, &testbstMerge2 , &testbstMerge3};
+            &testbstContains1, &testbstContains2, &testbstMerge1, &testbstMerge2, &testbstMerge3 };
         for (int testNum = 0; testNum < 7; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
