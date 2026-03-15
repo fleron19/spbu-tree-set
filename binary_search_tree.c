@@ -1,4 +1,5 @@
 #include "binary_search_tree.h"
+#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -287,4 +288,53 @@ BST* bstMerge(BST* tree1, BST* tree2)
     Node* curr2 = tree2->root;
     bstMergeRec(res, curr1, curr2);
     return res;
+}
+
+Iterator* iteratorInit(BST* tree)
+{
+    Iterator* it = (Iterator*)malloc(sizeof(Iterator));
+    int filled = 0;
+    it->currInd = 0;
+    it->size = tree->size;
+    it->values = (int*)calloc(it->size, sizeof(int));
+    if (it->values == NULL) {
+        printf("Allocation error\n");
+        return it;
+    }
+
+    Node* curr = tree->root;
+    Stack* stack = newStack();
+    while (curr != NULL || !isEmpty(stack)) {
+        while (curr != NULL) {
+            push(stack, curr);
+            curr = curr->leftChild;
+        }
+        curr = (Node*)pop(stack);
+        it->values[filled] = curr->value;
+        filled++;
+        curr = curr->rightChild;
+    }
+
+    deleteStack(stack);
+    return it;
+}
+
+bool iteratorHasNext(Iterator* it)
+{
+    return it->currInd < it->size;
+}
+
+int iteratorNext(Iterator* it)
+{
+    if (!iteratorHasNext(it))
+        return -1;
+    int res = it->values[it->currInd];
+    it->currInd++;
+    return res;
+}
+
+void iteratorFree(Iterator* it)
+{
+    free(it->values);
+    free(it);
 }

@@ -12,8 +12,15 @@ struct BST {
     int size;
 };
 
+struct Iterator {
+    int* values;
+    int size;
+    int currInd;
+};
+
 typedef struct Node Node;
 typedef struct BST BST;
+typedef struct Iterator Iterator;
 
 void bstInsert(BST* tree, int value);
 BST* newBst(void);
@@ -38,3 +45,8 @@ bool bstMax(BST* tree, int* val); // retrun true if tree is not empty, false oth
 bool bstMinKth(BST* tree, int* val, int k); // retrun true if the value exists, false otherwise
 // static void bstMergeRec(BST* into, Node* curr1, Node* curr2);
 BST* bstMerge(BST* tree1, BST* tree2);
+
+Iterator* iteratorInit(BST* tree);
+bool iteratorHasNext(Iterator* it);
+int iteratorNext(Iterator* it); // return -1 if there are no more values
+void iteratorFree(Iterator* it);
