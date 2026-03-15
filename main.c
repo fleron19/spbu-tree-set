@@ -109,6 +109,9 @@ bool testbstMinKth2(void)
     bstInsert(bst, 8);
     bool res = !bstMinKth(bst, &crutch, -1);
     bstFree(bst);
+    return res;
+}
+
 bool testbstMerge1(void)
 {
     BST* bst1 = newBst();
@@ -163,17 +166,19 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
-        bool (*tests[7])(void) = { &testbstInsert1, &testbstInsert2,
-            &testbstContains1, &testbstContains2, &testbstMerge1, &testbstMerge2, &testbstMerge3 };
-        for (int testNum = 0; testNum < 7; ++testNum) {
+        bool good = true;
+        bool (*tests[9])(void) = { &testbstInsert1, &testbstInsert2,
+            &testbstContains1, &testbstContains2, &testbstMerge1,
+            &testbstMerge2, &testbstMerge3, &testbstMinKth1, &testbstMinKth2 };
+        for (int testNum = 0; testNum < 9; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
             } else {
                 printf(RED("Test %d failed!\n"), testNum + 1);
-                return 1;
+                good = false;
             }
         }
-        return 0;
+        return good ? 1 : 0;
     }
     BST* bst = newBst();
     printf("Empty tree tests: \n");
@@ -228,8 +233,9 @@ int main(int argc, char** argv)
     bstMinKth(bst, &minVal5, 5);
     printf("Min №1 Value = %d\n", minVal1);
     printf("Min №5 Value = %d\n", minVal5);
-    maxval = 0;
-    minval = 0;
+
+    int maxval = 0;
+    int minval = 0;
     bstMax(bst, &maxval);
     bstMin(bst, &minval);
     printf("Max Value = %d\n", maxval);

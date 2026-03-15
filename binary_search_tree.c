@@ -266,6 +266,8 @@ bool bstMinKth(BST* tree, int* val, int k)
     findKth(tree->root, val, &counter);
 
     return true;
+}
+
 static void bstMergeRec(BST* into, Node* curr1, Node* curr2)
 {
     if (curr1 != NULL) {
