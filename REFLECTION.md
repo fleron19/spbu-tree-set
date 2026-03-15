@@ -15,7 +15,13 @@
 
 ```int bstSize(BST* tree)```
 
-~~iterator~~ (еще не реализован)
+```Iterator* iteratorInit(BST* tree)```
+
+```bool iteratorHasNext(Iterator* it)```
+
+```int iteratorNext(Iterator* it)```
+
+```void iteratorFree(Iterator* it)```
 
 ### Функции, оставшиеся деталями реализации:
 ```static void freeNode(Node* node)```
