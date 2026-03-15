@@ -223,6 +223,51 @@ bool bstMax(BST* tree, int* val)
     return true;
 }
 
+static bool findKth(Node* node, int* val, int* k)
+{
+    if (node == NULL) {
+        return false;
+    }
+
+    // when K-th element is found, the recursion will unwind
+    if (findKth(node->leftChild, val, k)) {
+        return true;
+    }
+
+    (*k)--;
+    if (*k == 0) {
+        *val = node->value;
+        return true;
+    }
+
+    return findKth(node->rightChild, val, k);
+}
+
+bool bstMinKth(BST* tree, int* val, int k)
+{
+    bool isValid = true;
+
+    if (k <= 0) {
+        printf("Index must be positive!\n");
+        isValid = false;
+    }
+    if (tree == NULL) {
+        printf("Tree is not found!\n");
+        return false;
+    }
+    if (tree->size < k) {
+        printf("Size of tree < index!\n");
+        isValid = false;
+    }
+    if (!isValid) {
+        return false;
+    }
+    int counter = k;
+    findKth(tree->root, val, &counter);
+
+    return true;
+}
+
 static void bstMergeRec(BST* into, Node* curr1, Node* curr2)
 {
     if (curr1 != NULL) {
