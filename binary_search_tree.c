@@ -299,7 +299,7 @@ Iterator* iteratorInit(BST* tree)
     it->values = (int*)calloc(it->size, sizeof(int));
     if (it->values == NULL) {
         printf("Allocation error\n");
-        return NULL;
+        return it;
     }
 
     Node* curr = tree->root;
