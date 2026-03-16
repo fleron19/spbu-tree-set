@@ -52,3 +52,6 @@ Iterator* iteratorInit(BST* tree);
 bool iteratorHasNext(Iterator* it);
 int iteratorNext(Iterator* it); // return -1 if there are no more values
 void iteratorFree(Iterator* it);
+
+bool isNodeValid(Node* node, int minElement, int maxElement);
+bool bstIsValid(BST* tree);
