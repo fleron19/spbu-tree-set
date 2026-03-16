@@ -288,3 +288,53 @@ BST* bstMerge(BST* tree1, BST* tree2)
     bstMergeRec(res, curr1, curr2);
     return res;
 }
+
+void bstDelete(BST* tree, int value)
+{
+    if (tree == NULL || tree->root == NULL) {
+        return;
+    }
+    Node* current = tree->root;
+    Node* parent = NULL;
+
+    while (current != NULL && current->value != value) {
+        parent = current;
+        if (value < current->value) {
+            current = current->leftChild;
+        } else {
+            current = current->rightChild;
+        }
+    }
+    if (current == NULL) {
+        return;
+    }
+    if (current->leftChild != NULL && current->rightChild != NULL) {
+        Node* successor = current->rightChild;
+        Node* successorParent = current;
+        while (successor->leftChild != NULL) {
+            successorParent = successor;
+            successor = successor->leftChild;
+        }
+        current->value = successor->value;
+        current = successor;
+        parent = successorParent;
+    }
+
+    Node* child;
+    if (current->leftChild != NULL) {
+        child = current->leftChild;
+    } else {
+        child = current->rightChild;
+    }
+    if (parent == NULL) {
+        tree->root = child;
+    } else {
+        if (parent->leftChild == current) {
+            parent->leftChild = child;
+        } else {
+            parent->rightChild = child;
+        }
+    }
+    free(current);
+    tree->size--;
+}
