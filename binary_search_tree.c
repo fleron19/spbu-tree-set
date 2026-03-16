@@ -338,7 +338,8 @@ void bstDelete(BST* tree, int value)
     }
     free(current);
     tree->size--;
-  
+}
+
 Iterator* iteratorInit(BST* tree)
 {
     Iterator* it = (Iterator*)malloc(sizeof(Iterator));

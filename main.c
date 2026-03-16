@@ -222,6 +222,8 @@ bool testbstDeleteNonExistent(void)
     bool res = (bst->size == 2) && bstContains(bst, 10) && bstContains(bst, 5);
     bstFree(bst);
     return res;
+}
+
 bool testbstIterator1(void)
 {
     BST* bst = newBst();
@@ -265,8 +267,8 @@ int main(int argc, char** argv)
         bool (*tests[])(void) = { &testbstInsert1, &testbstInsert2,
             &testbstContains1, &testbstContains2, &testbstMerge1,
             &testbstMerge2, &testbstMerge3, &testbstMinKth1, &testbstMinKth2,
-            &testbstIterator1, &testbstIterator22, &testbstDelete1,
-            &testbstDelete2, &testbstDelete3, &testbstDeleteRoot, &testbstDeleteNonExistent  };
+            &testbstIterator1, &testbstIterator2, &testbstDelete1,
+            &testbstDelete2, &testbstDelete3, &testbstDeleteRoot, &testbstDeleteNonExistent };
         for (int testNum = 0; testNum < TEST_NUM; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
