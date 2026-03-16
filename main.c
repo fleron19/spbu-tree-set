@@ -222,6 +222,31 @@ bool testbstDeleteNonExistent(void)
     bool res = (bst->size == 2) && bstContains(bst, 10) && bstContains(bst, 5);
     bstFree(bst);
     return res;
+bool testbstIterator1(void)
+{
+    BST* bst = newBst();
+    Iterator* it = iteratorInit(bst);
+    bool res = !iteratorHasNext(it) && (iteratorNext(it) == -1);
+
+    bstFree(bst);
+    iteratorFree(it);
+    return res;
+}
+
+bool testbstIterator2(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 3);
+    bstInsert(bst, 1);
+    bstInsert(bst, 5);
+    Iterator* it = iteratorInit(bst);
+    int i1 = iteratorNext(it);
+    int i2 = iteratorNext(it);
+    int i3 = iteratorNext(it);
+
+    bstFree(bst);
+    iteratorFree(it);
+    return (i1 == 1) && (i2 == 3) && (i3 == 5);
 }
 
 int main(int argc, char** argv)
@@ -235,12 +260,14 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
+        const int TEST_NUM = 16;
         bool good = true;
-        bool (*tests[14])(void) = { &testbstInsert1, &testbstInsert2,
+        bool (*tests[])(void) = { &testbstInsert1, &testbstInsert2,
             &testbstContains1, &testbstContains2, &testbstMerge1,
-            &testbstMerge2, &testbstMerge3, &testbstMinKth1, &testbstMinKth2, &testbstDelete1,
-            &testbstDelete2, &testbstDelete3, &testbstDeleteRoot, &testbstDeleteNonExistent };
-        for (int testNum = 0; testNum < 14; ++testNum) {
+            &testbstMerge2, &testbstMerge3, &testbstMinKth1, &testbstMinKth2,
+            &testbstIterator1, &testbstIterator22, &testbstDelete1,
+            &testbstDelete2, &testbstDelete3, &testbstDeleteRoot, &testbstDeleteNonExistent  };
+        for (int testNum = 0; testNum < TEST_NUM; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
             } else {
@@ -310,6 +337,14 @@ int main(int argc, char** argv)
     bstMin(bst, &minval);
     printf("Max Value = %d\n", maxval);
     printf("Min Value = %d\n", minval);
+
+    printf("LNR using iterator = \n");
+    Iterator* it = iteratorInit(bst);
+    while (iteratorHasNext(it)) {
+        printf("%d ", iteratorNext(it));
+    }
+    printf("\n");
+    iteratorFree(it);
 
     printf("----------------------------- \n");
 
