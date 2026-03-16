@@ -389,7 +389,7 @@ void iteratorFree(Iterator* it)
     free(it);
 }
 
-bool isNodeValid(Node* node, int minElement, int maxElement)
+static bool isNodeValid(Node* node, int minElement, int maxElement)
 {
     if (node == NULL) {
         return true;
