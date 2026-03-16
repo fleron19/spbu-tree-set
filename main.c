@@ -256,75 +256,76 @@ int main(int argc, char** argv)
     bstFree(bst);
     bstFree(bst2);
     bstFree(bstMerged);
+}
 
-    bool testbstDelete1(void)
-    {
-        BST* bst = newBst();
-        bstInsert(bst, 10);
-        bstInsert(bst, 5);
-        bstInsert(bst, 15);
+bool testbstDelete1(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
+    bstInsert(bst, 15);
 
-        bstDelete(bst, 15);
+    bstDelete(bst, 15);
 
-        bool res = (bst->size == 2) && !bstContains(bst, 15) && (bst->root->rightChild == NULL);
-        bstFree(bst);
-        return res;
-    }
+    bool res = (bst->size == 2) && !bstContains(bst, 15) && (bst->root->rightChild == NULL);
+    bstFree(bst);
+    return res;
+}
 
-    bool testbstDelete2(void)
-    {
-        BST* bst = newBst();
-        bstInsert(bst, 10);
-        bstInsert(bst, 5);
-        bstInsert(bst, 3);
+bool testbstDelete2(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
+    bstInsert(bst, 3);
 
-        bstDelete(bst, 5);
+    bstDelete(bst, 5);
 
-        bool res = (bst->size == 2) && !bstContains(bst, 5) && (bst->root->leftChild->value == 3);
-        bstFree(bst);
-        return res;
-    }
+    bool res = (bst->size == 2) && !bstContains(bst, 5) && (bst->root->leftChild->value == 3);
+    bstFree(bst);
+    return res;
+}
 
-    bool testbstDelete3(void)
-    {
-        BST* bst = newBst();
-        bstInsert(bst, 10);
-        bstInsert(bst, 5);
-        bstInsert(bst, 3);
-        bstInsert(bst, 7);
+bool testbstDelete3(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
+    bstInsert(bst, 3);
+    bstInsert(bst, 7);
 
-        bstDelete(bst, 5);
+    bstDelete(bst, 5);
 
-        bool res = (bst->size == 3) && !bstContains(bst, 5) && bstContains(bst, 10) && bstContains(bst, 3) && bstContains(bst, 7);
-        bstFree(bst);
-        return res;
-    }
+    bool res = (bst->size == 3) && !bstContains(bst, 5) && bstContains(bst, 10) && bstContains(bst, 3) && bstContains(bst, 7);
+    bstFree(bst);
+    return res;
+}
 
-    bool testbstDeleteRoot(void)
-    {
-        BST* bst = newBst();
-        bstInsert(bst, 10);
-        bstInsert(bst, 5);
+bool testbstDeleteRoot(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
 
-        bstDelete(bst, 10);
+    bstDelete(bst, 10);
 
-        bool res = (bst->size == 1) && (bst->root->value == 5);
-        bstFree(bst);
-        return res;
-    }
+    bool res = (bst->size == 1) && (bst->root->value == 5);
+    bstFree(bst);
+    return res;
+}
 
-    bool testbstDeleteNonExistent(void)
-    {
-        BST* bst = newBst();
-        bstInsert(bst, 10);
-        bstInsert(bst, 5);
+bool testbstDeleteNonExistent(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
 
-        bstDelete(bst, 42);
+    bstDelete(bst, 42);
 
-        bool res = (bst->size == 2) && bstContains(bst, 10) && bstContains(bst, 5);
-        bstFree(bst);
-        return res;
-    }
+    bool res = (bst->size == 2) && bstContains(bst, 10) && bstContains(bst, 5);
+    bstFree(bst);
+    return res;
+}
 
-    return 0;
+return 0;
 }
