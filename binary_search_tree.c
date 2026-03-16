@@ -294,7 +294,7 @@ Iterator* iteratorInit(BST* tree)
 {
     Iterator* it = (Iterator*)malloc(sizeof(Iterator));
     int filled = 0;
-    it->currInd = 0;
+    it->currIdx = 0;
     it->size = tree->size;
     it->values = (int*)calloc(it->size, sizeof(int));
     if (it->values == NULL) {
@@ -321,15 +321,15 @@ Iterator* iteratorInit(BST* tree)
 
 bool iteratorHasNext(Iterator* it)
 {
-    return it->currInd < it->size;
+    return it->currIdx < it->size;
 }
 
 int iteratorNext(Iterator* it)
 {
     if (!iteratorHasNext(it))
         return -1;
-    int res = it->values[it->currInd];
-    it->currInd++;
+    int res = it->values[it->currIdx];
+    it->currIdx++;
     return res;
 }
 

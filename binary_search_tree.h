@@ -15,7 +15,7 @@ struct BST {
 struct Iterator {
     int* values;
     int size;
-    int currInd;
+    int currIdx;
 };
 
 typedef struct Node Node;
