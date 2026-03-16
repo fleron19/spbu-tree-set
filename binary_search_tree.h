@@ -46,6 +46,8 @@ bool bstMinKth(BST* tree, int* val, int k); // retrun true if the value exists, 
 // static void bstMergeRec(BST* into, Node* curr1, Node* curr2);
 BST* bstMerge(BST* tree1, BST* tree2);
 
+void bstDelete(BST* tree, int value);
+
 Iterator* iteratorInit(BST* tree);
 bool iteratorHasNext(Iterator* it);
 int iteratorNext(Iterator* it); // return -1 if there are no more values

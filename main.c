@@ -155,6 +155,75 @@ bool testbstMerge3(void)
     return res;
 }
 
+bool testbstDelete1(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
+    bstInsert(bst, 15);
+
+    bstDelete(bst, 15);
+
+    bool res = (bst->size == 2) && !bstContains(bst, 15) && (bst->root->rightChild == NULL);
+    bstFree(bst);
+    return res;
+}
+
+bool testbstDelete2(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
+    bstInsert(bst, 3);
+
+    bstDelete(bst, 5);
+
+    bool res = (bst->size == 2) && !bstContains(bst, 5) && (bst->root->leftChild->value == 3);
+    bstFree(bst);
+    return res;
+}
+
+bool testbstDelete3(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
+    bstInsert(bst, 3);
+    bstInsert(bst, 7);
+
+    bstDelete(bst, 5);
+
+    bool res = (bst->size == 3) && !bstContains(bst, 5) && bstContains(bst, 10) && bstContains(bst, 3) && bstContains(bst, 7);
+    bstFree(bst);
+    return res;
+}
+
+bool testbstDeleteRoot(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
+
+    bstDelete(bst, 10);
+
+    bool res = (bst->size == 1) && (bst->root->value == 5);
+    bstFree(bst);
+    return res;
+}
+
+bool testbstDeleteNonExistent(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 10);
+    bstInsert(bst, 5);
+
+    bstDelete(bst, 42);
+
+    bool res = (bst->size == 2) && bstContains(bst, 10) && bstContains(bst, 5);
+    bstFree(bst);
+    return res;
+}
+
 bool testbstIterator1(void)
 {
     BST* bst = newBst();
@@ -193,12 +262,13 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
-        const int TEST_NUM = 11;
+        const int TEST_NUM = 16;
         bool good = true;
         bool (*tests[])(void) = { &testbstInsert1, &testbstInsert2,
             &testbstContains1, &testbstContains2, &testbstMerge1,
             &testbstMerge2, &testbstMerge3, &testbstMinKth1, &testbstMinKth2,
-            &testbstIterator1, &testbstIterator2 };
+            &testbstIterator1, &testbstIterator2, &testbstDelete1,
+            &testbstDelete2, &testbstDelete3, &testbstDeleteRoot, &testbstDeleteNonExistent };
         for (int testNum = 0; testNum < TEST_NUM; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
