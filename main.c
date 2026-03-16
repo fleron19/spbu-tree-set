@@ -257,7 +257,7 @@ bool testbstIsValid1(void)
     bool res1 = bstIsValid(bst); // Пустое дерево(true)
 
     bstInsert(bst, 50);
-    bool res2 = bstIsValid(bst); // В дереве одиг узел(true)
+    bool res2 = bstIsValid(bst); // В дереве один узел(true)
 
     bstFree(bst);
     return res1 && res2;
