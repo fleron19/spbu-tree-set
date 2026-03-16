@@ -256,6 +256,7 @@ int main(int argc, char** argv)
     bstFree(bst);
     bstFree(bst2);
     bstFree(bstMerged);
+    return 0;
 }
 
 bool testbstDelete1(void)
@@ -325,7 +326,4 @@ bool testbstDeleteNonExistent(void)
     bool res = (bst->size == 2) && bstContains(bst, 10) && bstContains(bst, 5);
     bstFree(bst);
     return res;
-}
-
-return 0;
 }
