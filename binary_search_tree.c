@@ -405,5 +405,5 @@ bool bstIsValid(BST* tree)
     if ((tree == NULL) || (tree->root == NULL)) {
         return true;
     }
-    return isNodeValid(tree->root, -100000000, 100000000);
+    return isNodeValid(tree->root, INT_MIN, INT_MAX);
 }
