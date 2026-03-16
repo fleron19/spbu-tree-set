@@ -1,5 +1,6 @@
 #include "binary_search_tree.h"
 #include "stack.h"
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
