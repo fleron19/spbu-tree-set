@@ -251,6 +251,32 @@ bool testbstIterator2(void)
     return (i1 == 1) && (i2 == 3) && (i3 == 5);
 }
 
+bool testbstIsValid1(void)
+{
+    BST* bst = newBst();
+    bool res1 = bstIsValid(bst); // Пустое дерево(true)
+
+    bstInsert(bst, 50);
+    bool res2 = bstIsValid(bst); // В дереве один узел(true)
+
+    bstFree(bst);
+    return res1 && res2;
+}
+
+bool testbstIsValid2(void)
+{
+    BST* bst = newBst();
+    bstInsert(bst, 20);
+    bstInsert(bst, 10);
+    bstInsert(bst, 30);
+    bstInsert(bst, 5);
+    bstInsert(bst, 15);
+
+    bool res = bstIsValid(bst);
+    bstFree(bst);
+    return res;
+}
+
 int main(int argc, char** argv)
 {
     bool testMode = false;
@@ -262,13 +288,14 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
-        const int TEST_NUM = 16;
+        const int TEST_NUM = 18;
         bool good = true;
         bool (*tests[])(void) = { &testbstInsert1, &testbstInsert2,
             &testbstContains1, &testbstContains2, &testbstMerge1,
             &testbstMerge2, &testbstMerge3, &testbstMinKth1, &testbstMinKth2,
             &testbstIterator1, &testbstIterator2, &testbstDelete1,
-            &testbstDelete2, &testbstDelete3, &testbstDeleteRoot, &testbstDeleteNonExistent };
+            &testbstDelete2, &testbstDelete3, &testbstDeleteRoot, &testbstDeleteNonExistent,
+            &testbstIsValid1, &testbstIsValid2 };
         for (int testNum = 0; testNum < TEST_NUM; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);

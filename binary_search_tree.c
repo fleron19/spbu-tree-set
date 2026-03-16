@@ -1,5 +1,6 @@
 #include "binary_search_tree.h"
 #include "stack.h"
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -387,4 +388,23 @@ void iteratorFree(Iterator* it)
 {
     free(it->values);
     free(it);
+}
+
+static bool isNodeValid(Node* node, int minElement, int maxElement)
+{
+    if (node == NULL) {
+        return true;
+    }
+    if ((node->value <= minElement) || (node->value >= maxElement)) {
+        return false;
+    }
+    return isNodeValid(node->leftChild, minElement, node->value) && isNodeValid(node->rightChild, node->value, maxElement);
+}
+
+bool bstIsValid(BST* tree)
+{
+    if ((tree == NULL) || (tree->root == NULL)) {
+        return true;
+    }
+    return isNodeValid(tree->root, INT_MIN, INT_MAX);
 }
